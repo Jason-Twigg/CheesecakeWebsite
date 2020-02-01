@@ -1,0 +1,88 @@
+<!--Jason Twigg-->
+<!DOCTYPE html>
+<html>
+    <head?>
+        <!--Links Html file to css file to make it look nice-->
+        <link rel="stylesheet" href="styles.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <title>Cheesecake Order Form</title>
+
+        <!--Start of JQuery and Javascript Script-->
+        <script src="javascripts/order.js"></script>
+        
+    </head>
+    <body>
+        
+        <h1>Cheesecake Order Form</h1>
+        <!--Retrieves image from Url-->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Mondays_at_Il_Forno_-_Cheesecake_with_strawberry_sauce.jpg/1200px-Mondays_at_Il_Forno_-_Cheesecake_with_strawberry_sauce.jpg" alt="Cheesecake" width="200" height="200">
+        
+        <p id=quantityTitle>Quantity Topping</p>
+
+        <form>
+            <table>
+                <td>
+                    <!--Combobox with 5 options-->
+                    <select id="quantityDropDown">
+                        <option value="one">1</option>
+                        <option value="two">2</option>
+                        <option value="three" selected>3</option>
+                        <option value="four">4</option>
+                        <option value="five">5</option>
+                    </select>
+                </td>
+                <td>
+                    <!--Three different radio buttons for toppings-->
+                    <input type="radio" name="topping"
+                value="plain" checked>
+                    <label for="plain">Plain</label><br>
+                    <input type="radio" name="topping"
+                value="cherry">
+                    <label for="cherry">Cherry</label><br>
+                    <input type="radio" name="topping"
+                value="chocolate">
+                    <label for="chocolate">Chocolate</label>
+                </td>
+            </table>
+            <!--Input area for nots on the order-->
+            <h3>Notes:</h3>
+            <textarea id=notes rows="4" cols="50"
+        placeholder="Enter any special instructions here."></textarea>
+            <br><br>
+            <input id="order" type="button" value="Order">
+        </form>
+        <!--Amout of previous orders-->
+        <h3>Orders for 
+            <!--
+                CSS For Drop Down from Example @
+                https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_dropdown_right
+            -->
+
+            <div class="dropdown">
+                <!--Drop down buttons created for each month of the year-->
+                <button id="dropbutton" class="dropbtn">Jan</button>
+                <div class="dropdown-content">
+                    <a href="#">Jan</a>
+                    <a href="#">Apr</a>
+                    <a href="#">Mar</a>
+                    <a href="#">May</a>
+                    <a href="#">Jun</a>
+                    <a href="#">Jul</a>
+                    <a href="#">Aug</a>
+                    <a href="#">Sep</a>
+                    <a href="#">Oct</a>
+                    <a href="#">Nov</a>
+                    <a href="#">Dec</a>
+                </div>
+            </div>
+        </h3>
+        <ul>
+            <li>11 cherry</li>
+            <li>17 chocolate</li>
+            <li>31 plain</li>
+        </ul>
+
+        <br>
+
+    </body>
+</html>

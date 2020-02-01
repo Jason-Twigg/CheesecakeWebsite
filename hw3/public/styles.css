@@ -1,0 +1,137 @@
+/* Jason Twigg */
+html{
+    background-color: rgb(167, 155, 121);
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    
+}
+
+/* Constant width form to make sure it
+ * looks nice regardless the side of the window
+ */
+body{
+    padding-top: 1px;
+    border-radius: 25px;
+    color: black;
+    background-color: rgb(167, 149, 93);
+    text-align: center;
+
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    
+}
+
+/* Color and size specification for headers */
+h1, h3{
+    font-family: Comic Sans, Comic Sans MS, cursive;
+    color: black;
+    border-radius: 10px;
+    background-color: rgb(187, 57, 57);
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img {
+    border-radius: 20px;
+    padding: 5px;
+}
+
+/* Center and change width of form element */
+form{  
+    display: inline-block;
+    text-align: center;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Specify the header 3 inside the form to make sure
+ * it is full width, instead of the 80% specified above
+ */
+form > h3{
+    width: 100%;
+}
+
+table{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+td {
+    padding-left: 30px;
+    padding-right: 30px;
+    text-align: left;
+}
+
+td > label {
+    font-size: 20px;
+}
+
+/* Color and size specification for paragraphs */
+p {
+    font-family: Comic Sans, Comic Sans MS, cursive;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: rgb(187, 57, 57);
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+ul {
+    text-align: center;
+    list-style: inside;
+    font-size: 20px;
+    text-align: left;
+    padding-left: 140pt;
+}
+
+span {
+    background-color: #f9f9f9;
+    border-radius: 3px;
+}
+
+/* CSS For Drop Down from Example @
+ * https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_dropdown_right
+ */
+.dropbtn {
+    background-color: #f1f1f1;
+    color: rgb(54, 2, 2);
+    padding: 1px;
+    font-size: 16px;
+    font-family: Comic Sans, Comic Sans MS, cursive;
+    border: none;
+    cursor: pointer;
+}
+  
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+  
+.dropdown-content {
+    display: none;
+    position: absolute;
+    overflow: auto;
+    max-height: 100px;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+  
+.dropdown-content a {
+    color: black;
+    padding: 2px 4px;
+    text-decoration: none;
+    display: block;
+}
+  
+.dropdown-content a:hover {background-color: rgb(187, 57, 57);}
+.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropbtn {background-color: rgb(187, 57, 57);}

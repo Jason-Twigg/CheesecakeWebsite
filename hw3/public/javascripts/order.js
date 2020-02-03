@@ -1,4 +1,6 @@
+//Jason Twigg
 //Start of JQuery and Javascript Script
+//Holder of functions for cheesecake website
 
 eventHandlerOrder = function (){
     

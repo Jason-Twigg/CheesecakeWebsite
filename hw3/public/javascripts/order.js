@@ -22,7 +22,36 @@ eventHandlerOrder = function (){
 
 eventHandlerMonthDiv = function () {
 
+        // Set the text of the drop down button to the last month selected
         $("#dropbutton").text($(this).text());
+
+        // Calls a post command using the jQuery method
+        $.post("http://localhost:3000/orders", function(data, status){
+
+            //This function is called if the call was successful.
+            //First we parse the data into cheesecakes, and assume that
+            //this data is in array format
+            var cheesecakes = JSON.parse(data);
+
+            //We retrieve the unordered list by its id 'orderlist', and
+            //then clear its items.
+            var ul = document.getElementById("orderlist");
+            ul.innerHTML = "";
+
+            //Loop through each entry from the data retrieved, we will
+            //retrieve the items quantity and topping and enter that
+            //as a new list item and add it to the unordered list
+            for (var i = 0; i < cheesecakes.length; i++){
+                var cheesecake = cheesecakes[i];
+                var cheesecakeStr = cheesecake.quantity + " " +
+                                    cheesecake.topping;
+                var li = document.createElement("li");
+                li.appendChild(document.createTextNode(cheesecakeStr));
+                ul.appendChild(li);
+            }
+
+
+        });
 
 }
 

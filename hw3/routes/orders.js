@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-
+var dbms = require('../public/javascripts/dbms');
+//import { dbquery } from '../public/javascripts/dbms';
 // Create 4 difference cheese cake objects, each
 // with their own topping and quantity
 var cheesecake01 = { 
@@ -38,7 +39,15 @@ router.get('/', function(req, res, next) {
 
 // POST orders listing
 router.post('/', function(req, res, next) {
-  res.send(jsonString);
+  let month = req.body.month;
+  console.log(month);
+  let command = `SELECT * FROM ORDERS WHERE MONTH='${month}';`
+  console.log(`SQL Query: ${command}`);
+  dbms.dbquery(command, (error, results) => {
+    console.log(results);
+    res.send(results);
+  })
+  //res.send(jsonString);
 });
 
 module.exports = router;

@@ -10,12 +10,23 @@ eventHandlerOrder = function (){
     // How to reference checked radiobutton:
     // https://www.tutorialrepublic.com/faq/how-to-get-the-value-of-selected-radio-button-using-jquery.php
     else {
+        let quantity = $("#quantityDropDown").val();
+        let topping = $("input[name='topping']:checked").val();
+        let notes = $("#notes").val();
         $("#quantityTitle").html("Thank you! Your order has been placed.<br>" +
-        "Order Info: " + $("#quantityDropDown").val() + " " +
-        $("input[name='topping']:checked").val() + " Cheesecakes" +  "<br>" +
-        "Notes: " + $("#notes").val() + "<br>"
+        "Order Info: " + quantity + " " +
+        topping + " Cheesecakes" +  "<br>" +
+        "Notes: " + notes + "<br>"
         );
         $("form").hide();
+
+        $.post("http://localhost:3000/neworder",
+            {"quantity": quantity,  "topping": topping, "notes": notes},
+            function(data){
+
+                alert(quantity + " " + topping + " " + notes);
+
+        });
 
     }
 }
@@ -25,33 +36,65 @@ eventHandlerMonthDiv = function () {
         // Set the text of the drop down button to the last month selected
         $("#dropbutton").text($(this).text());
 
+        //alert("hi1");
+
         // Calls a post command using the jQuery method
-        $.post("http://localhost:3000/orders", function(data, status){
+        $.post("http://localhost:3000/orders", {"month":$(this).text().toUpperCase()}, function(data){
+            
+            //alert("hi2");
 
             //This function is called if the call was successful.
             //First we parse the data into cheesecakes, and assume that
             //this data is in array format
-            var cheesecakes = JSON.parse(data);
+            //var cheesecakes = JSON.parse(data);
+            var cheesecakes = data;
 
             //We retrieve the unordered list by its id 'orderlist', and
             //then clear its items.
             var ul = document.getElementById("orderlist");
             ul.innerHTML = "";
 
-            //Loop through each entry from the data retrieved, we will
-            //retrieve the items quantity and topping and enter that
-            //as a new list item and add it to the unordered list
+            var plain = 0;
+            var chocolate = 0;
+            var cherry = 0;
+
+            //console.log("hi");
+
             for (var i = 0; i < cheesecakes.length; i++){
+
                 var cheesecake = cheesecakes[i];
-                var cheesecakeStr = cheesecake.quantity + " " +
-                                    cheesecake.topping;
-                var li = document.createElement("li");
-                li.appendChild(document.createTextNode(cheesecakeStr));
-                ul.appendChild(li);
+                //alert(cheesecake.QUANTITY + " " + cheesecake.TOPPING + plain + " " + chocolate + " " + cherry);
+                switch (cheesecake.TOPPING){
+                    case ("Plain"):
+                        plain += parseInt(cheesecake.QUANTITY);
+                        break;
+                    case ("Chocolate"):
+                        chocolate += parseInt(cheesecake.QUANTITY);
+                        break;
+                    case ("Cherry"):
+                        cherry += parseInt(cheesecake.QUANTITY);
+                        break;
+                    default:
+                        console.log("error finding type");
+                }
             }
+            var plainListItem = document.createElement("li");
+            plainListItem.appendChild(document.createTextNode(plain + " Plain"));
+            ul.appendChild(plainListItem);
+            var chocolateListItem = document.createElement("li");
+            chocolateListItem.appendChild(document.createTextNode(chocolate + " Chocolate"));
+            ul.appendChild(chocolateListItem);
+            var cherryListItem = document.createElement("li");
+            cherryListItem.appendChild(document.createTextNode(cherry + " Cherry"));
+
+ 
+            ul.appendChild(cherryListItem);
+           
 
 
         });
+
+        //alert("hi3");
 
 }
 

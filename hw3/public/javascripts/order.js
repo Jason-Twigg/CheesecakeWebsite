@@ -41,8 +41,7 @@ eventHandlerMonthDiv = function () {
         // Calls a post command using the jQuery method
         $.post("http://localhost:3000/orders", {"month":$(this).text().toUpperCase()}, function(data){
             
-            //alert("hi2");
-
+            
             //This function is called if the call was successful.
             //First we parse the data into cheesecakes, and assume that
             //this data is in array format
@@ -54,16 +53,18 @@ eventHandlerMonthDiv = function () {
             var ul = document.getElementById("orderlist");
             ul.innerHTML = "";
 
+            // Initialize integer variables for holding amounts
             var plain = 0;
             var chocolate = 0;
             var cherry = 0;
 
-            //console.log("hi");
-
+            // Loop through each cheesecake entry from the database
             for (var i = 0; i < cheesecakes.length; i++){
 
+                // Retrieve the entry and then check which topping it is,
+                // then incremenet that toppping's amount.
                 var cheesecake = cheesecakes[i];
-                //alert(cheesecake.QUANTITY + " " + cheesecake.TOPPING + plain + " " + chocolate + " " + cherry);
+                
                 switch (cheesecake.TOPPING){
                     case ("Plain"):
                         plain += parseInt(cheesecake.QUANTITY);
@@ -78,6 +79,9 @@ eventHandlerMonthDiv = function () {
                         console.log("error finding type");
                 }
             }
+
+            // Create the list element for each topping and then append them
+            // to the correct area in the html file.
             var plainListItem = document.createElement("li");
             plainListItem.appendChild(document.createTextNode(plain + " Plain"));
             ul.appendChild(plainListItem);

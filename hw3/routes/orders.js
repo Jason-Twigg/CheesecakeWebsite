@@ -39,15 +39,21 @@ router.get('/', function(req, res, next) {
 
 // POST orders listing
 router.post('/', function(req, res, next) {
+  
+  // Retrieve month from the request body
   let month = req.body.month;
   console.log(month);
+
+  // Construct the SQL Query that will select all of the orders for that month
   let command = `SELECT * FROM ORDERS WHERE MONTH='${month}';`
   console.log(`SQL Query: ${command}`);
+
+  // Run the SQL query and then return the results that were returned from the
+  // database
   dbms.dbquery(command, (error, results) => {
     console.log(results);
     res.send(results);
   })
-  //res.send(jsonString);
 });
 
 module.exports = router;

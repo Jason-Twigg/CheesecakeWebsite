@@ -24,7 +24,7 @@ eventHandlerOrder = function (){
             {"quantity": quantity,  "topping": topping, "notes": notes},
             function(data){
 
-                alert(quantity + " " + topping + " " + notes);
+                //alert(quantity + " " + topping + " " + notes);
 
         });
 
